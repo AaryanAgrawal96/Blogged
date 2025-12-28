@@ -9,10 +9,10 @@ import { blogRouter } from "./routes/blog.js";
 import { checkForAuthenticationCookie } from "./middleware/authentication.js";
 
 const app = express();
-const PORT = 8003;
+const PORT = process.env.PORT;
 
 mongoose
-  .connect("mongodb://localhost:27017/blogged")
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connected to MongoDB");
   })
