@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Blog } from "../models/blog.js";
-import {handleViewBlogById} from "../controllers/blog.js";
+import { handleViewBlogById, handleComment } from "../controllers/blog.js";
 import multer from "multer";
 import path from "path";
 const blogRouter = Router();
@@ -33,5 +33,7 @@ blogRouter.route("/").post(upload.single("coverImg"), async (req, res) => {
 });
 
 blogRouter.route("/:id").get(handleViewBlogById);
+
+blogRouter.route("/comment/:blogId").post(handleComment);
 
 export { blogRouter };

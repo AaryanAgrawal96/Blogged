@@ -23,7 +23,7 @@ const userSchema = new Schema(
     },
     pfpUrl: {
       type: String,
-      default: "/public/images/default.png",
+      default: "/images/default.png",
     },
     role: {
       type: String,
