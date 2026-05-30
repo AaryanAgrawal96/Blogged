@@ -6,6 +6,14 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
+    category: {
+      type: String,
+      default: "Articles",
+    },
+    preview: {
+      type: String,
+      default: "",
+    },
     body: {
       type: String,
       required: true,

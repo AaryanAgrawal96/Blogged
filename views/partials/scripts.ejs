@@ -3,3 +3,30 @@
   integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
   crossorigin="anonymous"
 ></script>
+<script>
+  // Theme toggle: persist in localStorage and toggle 'dark' class on <html>
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("theme-toggle");
+    const root = document.documentElement;
+    function applyTheme(t) {
+      if (t === "dark") root.classList.add("dark");
+      else root.classList.remove("dark");
+      if (btn) btn.textContent = t === "dark" ? "☀️" : "🌙";
+    }
+    const stored =
+      localStorage.getItem("theme") ||
+      (window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+    applyTheme(stored);
+    if (btn) {
+      btn.addEventListener("click", () => {
+        const cur = root.classList.contains("dark") ? "dark" : "light";
+        const next = cur === "dark" ? "light" : "dark";
+        localStorage.setItem("theme", next);
+        applyTheme(next);
+      });
+    }
+  });
+</script>

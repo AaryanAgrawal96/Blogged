@@ -32,10 +32,22 @@ app.use("/user", userRouter);
 app.use("/blog", blogRouter);
 
 app.get("/", async (req, res) => {
-  const allBlogs = await Blog.find({}).sort({ createdAt: -1 });
+  const { q, genre } = req.query;
+  const filter = {};
+  if (genre) filter.category = genre;
+  if (q) {
+    const regex = new RegExp(q, "i");
+    filter.$or = [{ title: regex }, { body: regex }];
+  }
+
+  const allBlogs = await Blog.find(filter)
+    .populate("createdBy", "username pfpUrl")
+    .sort({ createdAt: -1 });
   res.render("home", {
     user: req.user,
     blogs: allBlogs,
+    query: q || "",
+    selectedGenre: genre || "",
   });
 });
 

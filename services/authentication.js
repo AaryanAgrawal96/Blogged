@@ -6,7 +6,7 @@ function createTokenForUser(user) {
     _id: user._id,
     email: user.email,
     username: user.username,
-    userPfp: user.userPfp,
+    pfpUrl: user.pfpUrl,
     role: user.role,
   };
   return jwt.sign(payload, secret);

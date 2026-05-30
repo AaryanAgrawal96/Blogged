@@ -1,0 +1,74 @@
+body { font-family: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: var(--bg); color: var(--text); }
+.navbar-brand { font-weight: 700; letter-spacing: 0.2px; }
+.navbar { box-shadow: 0 2px 6px rgba(16,24,40,0.06); }
+.genres-nav .nav-link { margin-right: 0.5rem; }
+.card { border: none; border-radius: 12px; }
+.card .card-title { font-weight: 600; font-family: 'Merriweather', serif; font-size: 1.125rem; color: var(--text); }
+.card .card-text { color: #444; }
+.small { font-size: 0.85rem; }
+/* make navbar search compact */
+.form-control:focus { box-shadow: none; border-color: #7c3aed; }
+.btn-outline-primary { border-color: rgba(124,58,237,0.12); color: #7c3aed; }
+.btn-outline-primary:hover { background: rgba(124,58,237,0.06); }
+/* responsive tweaks */
+@media (max-width: 768px) {
+  .genres-nav { gap: .25rem; }
+}
+
+/* Theme variables */
+:root{
+  --bg: #f7f7fb;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #7c3aed;
+}
+.dark {
+  --bg: #0b1020;
+  --card: #0f1724;
+  --text: #e6eef8;
+  --muted: #9aa4b2;
+  --accent: #8b5cf6;
+  background: var(--bg);
+  color: var(--text);
+}
+body { background: var(--bg); color: var(--text); }
+.card { background: var(--card); }
+.text-muted, .card .card-text { color: var(--muted); }
+.btn-outline-secondary { color: var(--text); border-color: rgba(255,255,255,0.08); }
+.badge { background: rgba(124,58,237,0.12); color: var(--accent); }
+
+/* Home card images: enforce square crop */
+.home-card-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; height: auto; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+
+/* My blogs images: fixed height, cropped */
+.myblog-img { width: 100%; height: 200px; object-fit: cover; }
+
+/* Navbar and link contrast adjustments */
+.navbar { background: var(--card) !important; }
+.navbar .navbar-brand, .navbar .nav-link { color: var(--text) !important; }
+.navbar .nav-link.active { background: var(--accent) !important; color: #fff !important; }
+.genres-nav .nav-link { color: var(--text) !important; }
+
+/* Blog content */
+.blog-body { line-height: 1.9; color: var(--text); font-family: 'Merriweather', serif; font-size: 1.02rem; }
+
+/* Headings */
+h1,h2,h3 { font-family: 'Merriweather', serif; color: var(--text); line-height: 1.15; }
+h1 { font-size: 2rem; font-weight: 700; margin-bottom: .5rem; }
+h2 { font-size: 1.5rem; font-weight: 700; }
+
+
+/* Improved contrast for badges/buttons */
+.btn-primary { background: var(--accent); border-color: var(--accent); }
+.btn-primary:hover { opacity: 0.95; }
+
+/* Profile avatar size */
+.profile-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
+/* Dropdown menus contrast */
+.dropdown-menu { background: var(--card); color: var(--text); border: 1px solid rgba(0,0,0,0.06); }
+.dropdown-menu .dropdown-item { color: var(--text); }
+
+/* Small avatar sizing */
+.navbar img { object-fit: cover; }
+.rounded-circle { object-fit: cover; }

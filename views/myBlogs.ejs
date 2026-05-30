@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <title>My Blogs</title>
+  </head>
+  <body>
+    <%- include('./partials/scripts.ejs') %> <%-
+    include('./partials/navbar.ejs') %>
+
+    <div class="container mt-4">
+      <h2>My Blogs</h2>
+      <% if (!blogs || blogs.length === 0) { %>
+      <div class="alert alert-info">You have not published any blogs yet.</div>
+      <% } else { %>
+      <div class="row row-cols-1 row-cols-md-2 g-3">
+        <% blogs.forEach((blog) => { %>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="<%= blog.coverUrl %>"
+              class="card-img-top myblog-img"
+              alt="<%= blog.title %>"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <p class="card-text">
+                <strong>Type:</strong> <%= blog.category %>
+              </p>
+              <p class="card-text">
+                <%= blog.preview && blog.preview.length ? blog.preview :
+                (blog.body || '').replace(/<[^>]+>/g, '').substring(0, 120)
+                %>...
+              </p>
+              <a href="/blog/<%= blog._id %>" class="btn btn-primary">Read</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>

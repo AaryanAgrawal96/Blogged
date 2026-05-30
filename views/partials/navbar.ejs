@@ -19,28 +19,40 @@
       <ul class="navbar-nav">
         <% if (locals.user) { %>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/blog/create">Create blog</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-2">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle d-flex align-items-center"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-           <%= locals.user.username  %> 
+            <img
+              src="<%= locals.user.pfpUrl || '/images/default.png' %>"
+              alt="avatar"
+              width="32"
+              height="32"
+              class="rounded-circle me-2"
+            />
+            <span><%= locals.user.username %></span>
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">My Blogs</a></li>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/user/my-blogs">My Blogs</a></li>
+            <li>
+              <a class="dropdown-item" href="/user/profile">View Profile</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="/user/signout">Logout</a></li>
           </ul>
         </li>
+
         <% } else { %>
-         <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="/user/signup">Create account</a>
         </li>
         <li class="nav-item">
@@ -48,6 +60,11 @@
         </li>
         <% } %>
       </ul>
+      <div class="d-flex ms-auto">
+        <button id="theme-toggle" class="btn btn-sm btn-outline-secondary">
+          🌙
+        </button>
+      </div>
     </div>
   </div>
 </nav>

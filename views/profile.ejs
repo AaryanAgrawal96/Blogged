@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <title>Profile</title>
+  </head>
+  <body>
+    <%- include('./partials/scripts.ejs') %> <%-
+    include('./partials/navbar.ejs') %>
+
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <img
+                src="<%= user.pfpUrl || '/images/default.png' %>"
+                class="profile-avatar mb-3"
+                alt="Profile Photo"
+              />
+              <h5 class="card-title"><%= user.username %></h5>
+              <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+              <p class="card-text">
+                <strong>Joined:</strong>
+                <%= user.createdAt.toLocaleDateString() %>
+              </p>
+              <p class="card-text">
+                <strong>Total posts:</strong> <%= blogCount %>
+              </p>
+              <p class="card-text">
+                <strong>Total words written:</strong> <%= totalWords %>
+              </p>
+              <a class="btn btn-primary" href="/user/my-blogs">My Blogs</a>
+              <hr />
+              <form
+                action="/user/profile/photo"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <div class="mb-3">
+                  <label for="pfp" class="form-label"
+                    >Update profile photo</label
+                  >
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="pfp"
+                    name="pfp"
+                    accept="image/*"
+                  />
+                </div>
+                <button class="btn btn-sm btn-outline-primary" type="submit">
+                  Upload
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card p-3">
+            <h4>Recent posts</h4>
+            <% if (blogs.length === 0) { %>
+            <p>You have not published any posts yet.</p>
+            <% } else { %>
+            <ul class="list-group list-group-flush">
+              <% blogs.forEach((blog) => { %>
+              <li class="list-group-item">
+                <h5><a href="/blog/<%= blog._id %>"><%= blog.title %></a></h5>
+                <p><strong>Type:</strong> <%= blog.category %></p>
+                <p class="mb-0">
+                  <%= blog.preview && blog.preview.length ? blog.preview :
+                  (blog.body || '').replace(/<[^>]+>/g, '').substring(0,140)
+                  %>...
+                </p>
+              </li>
+              <% }) %>
+            </ul>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
